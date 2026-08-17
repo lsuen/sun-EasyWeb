@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 虚拟环境
+.venv/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 日志和截图
+logs/
+screenshots/
+*.log
+
+# Allure 报告输出
+allure-report/
+
+# Allure 测试结果（临时文件）
+allure-results/
+
+# 测试数据（保留模板，忽略修改）
+data/*.xlsx
+!data/test_data_template.xlsx
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# Playwright
+.playwright/
+
+# AI 运行时数据（不污染根目录）
+data/ai/knowledge.db
+data/ai/knowledge.db-*
+data/ai/staging/*.json
+logs/ai/
+
+# 环境变量（含 API Key，勿提交）
+.env
+.MemoryForAI/
+
+# 本地敏感信息（GitHub Token 等，勿提交）
+.secrets/
+
+# 大型二进制包（体积过大无法上传 GitHub，需自行下载）
+# 下载方法见 CHROME_DOWNLOAD.txt 与 README 的「内置资源说明」
+pkg/chrome-win64/
+pkg/chromedriver-win64/

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多窗口演示 - UI自动化练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .window-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .window-card {
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+        
+        .window-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .window-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .window-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .window-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .window-card a:hover {
+            background: #764ba2;
+        }
+        
+        .instructions {
+            padding: 20px;
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .instructions h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            color: #666;
+        }
+        
+        .instructions li {
+            margin: 8px 0;
+        }
+        
+        .back-link {
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            max-width: 300px;
+        }
+        
+        .test-info h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .test-info code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h3>📝 元素定位提示</h3>
+        <p>窗口链接: <code>class="window-link"</code></p>
+        <p>新窗口标题: 各不相同</p>
+        <p>使用 window_handles 切换</p>
+    </div>
+    
+    <div class="container">
+        <h1>🪟 多窗口切换演示</h1>
+        <p class="subtitle">点击下方链接会在新窗口打开页面，练习窗口句柄切换</p>
+        
+        <div class="instructions">
+            <h3>💡 操作说明</h3>
+            <ol>
+                <li>点击下方的链接，会在新标签页打开</li>
+                <li>使用 <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px;">driver.window_handles</code> 获取所有窗口句柄</li>
+                <li>使用 <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px;">driver.switch_to.window(handle)</code> 切换窗口</li>
+            </ol>
+        </div>
+        
+        <div class="window-links">
+            <div class="window-card">
+                <h3>📄 窗口 1 - 产品介绍</h3>
+                <p>打开产品介绍页面</p>
+                <a href="/new-window?page=product" target="_blank" class="window-link" id="link-product">打开产品窗口</a>
+            </div>
+            
+            <div class="window-card">
+                <h3>📄 窗口 2 - 服务条款</h3>
+                <p>打开服务条款页面</p>
+                <a href="/new-window?page=terms" target="_blank" class="window-link" id="link-terms">打开条款窗口</a>
+            </div>
+            
+            <div class="window-card">
+                <h3>📄 窗口 3 - 联系我们</h3>
+                <p>打开联系我们页面</p>
+                <a href="/new-window?page=contact" target="_blank" class="window-link" id="link-contact">打开联系窗口</a>
+            </div>
+        </div>
+        
+        <div class="back-link">
+            <a href="/" id="back-home">← 返回首页</a>
+        </div>
+    </div>
+</body>
+</html>

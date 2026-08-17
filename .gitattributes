@@ -1,0 +1,11 @@
+* text=auto
+
+# 二进制文件不进行行尾转换
+*.exe binary
+*.dll binary
+*.pyd binary
+*.jar binary
+*.zip binary
+*.png binary
+*.jpg binary
+*.ico binary

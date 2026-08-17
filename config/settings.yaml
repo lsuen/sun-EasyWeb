@@ -1,0 +1,101 @@
+# Easy-Web 配置文件
+
+# ========== 引擎配置 ==========
+# 自动化引擎: selenium 或 playwright
+engine: selenium
+
+# 浏览器类型: 
+#   Selenium: chrome, firefox
+#   Playwright: chromium, firefox, webkit
+browser: chrome
+
+# ========== 浏览器路径配置 ==========
+# Chrome 浏览器路径 (留空则使用系统默认)
+# 示例: pkg/chrome-win64/chrome.exe 或 C:\Program Files\Google\Chrome\Application\chrome.exe
+browser_path: pkg/chrome-win64/chrome.exe
+
+# ChromeDriver 路径 (仅 Selenium 需要，留空则自动检测)
+# 示例: pkg/chromedriver-win64/chromedriver.exe
+driver_path: pkg/chromedriver-win64/chromedriver.exe
+
+# Playwright 浏览器路径 (仅 Playwright 需要)
+# 如果使用了 playwright install，可以留空
+playwright_browser_path: 
+
+# ========== 测试网站配置 ==========
+# 基础URL (可在数据文件中用 ${base_url} 引用)
+base_url: http://localhost:5000
+
+# 是否自动启动测试网站
+auto_start_website: false
+
+# 测试网站路径 (留空则使用 pkg/UITestWebsite/UITestWebsite.exe)
+website_path: pkg/UITestWebsite/UITestWebsite.exe
+
+# 测试网站端口
+website_port: 5000
+
+# ========== 运行配置 ==========
+# 无头模式 (不显示浏览器窗口)
+headless: false
+
+# 页面加载超时时间 (秒)
+timeout: 10
+
+# 窗口大小 (留空则使用默认)
+window_size: 1280x720
+
+# ========== 日志配置 ==========
+# 日志级别: DEBUG, INFO, WARNING, ERROR
+log_level: INFO
+
+# ========== 鲁棒性配置 ==========
+# 鲁棒性模式: 启用三级防御链 (原生→JS→ActionChains)
+# 适用于不稳定元素、动态页面、易失败场景
+robust_mode: true
+
+# ========== Allure 报告配置 ==========
+# Allure 命令行工具路径 (留空则使用 pkg 内置版本，再 fallback 到系统 PATH)
+# 示例: C:/allure/bin/allure.bat 或 /usr/local/bin/allure
+# 注意：Windows 下可以不带 .bat 扩展名，框架会自动添加
+allure_path: 
+
+# ========== LLM 配置 (OpenAI 兼容) ==========
+# 敏感项（API Key 等）请写入项目根目录 .env，参见 .env.example
+# .env 中的值会覆盖本文件中的同名字段
+llm:
+  enabled: false
+  base_url: https://api.openai.com/v1
+  model: gpt-4o-mini
+  embedding_model: text-embedding-3-small
+  temperature: 0.2
+  max_tokens: 4096
+  mock: false
+
+# ========== Agent 配置 ==========
+agent:
+  mode: hybrid
+  max_steps: 20
+  step_timeout: 30
+
+# ========== 四层记忆配置 ==========
+memory:
+  db_path: data/ai/knowledge.db
+  rag_top_k: 5
+  promotion_min_success: 3
+
+# ========== Skill 配置 ==========
+skills:
+  enabled:
+    - generate_case
+    - diagnose_failure
+    - heal_selector
+
+# ========== 通知配置 ==========
+# 钉钉 Webhook 建议写入 .env: DINGTALK_WEBHOOK=...
+notify:
+  dingtalk:
+    enabled: false
+    keywords:
+      - 通知
+      - 报告

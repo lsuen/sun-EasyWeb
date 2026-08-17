@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录 - UI自动化练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 450px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .login-header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-left: 4px solid #c33;
+        }
+        
+        .test-account {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+        
+        .test-account h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .test-account p {
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            max-width: 300px;
+        }
+        
+        .test-info h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .test-info code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h3>📝 元素定位提示</h3>
+        <p>用户名输入框: <code>id="username"</code></p>
+        <p>密码输入框: <code>id="password"</code></p>
+        <p>登录按钮: <code>id="login-btn"</code></p>
+        <p>错误提示: <code>class="error-message"</code></p>
+    </div>
+    
+    <div class="login-container">
+        <div class="login-header">
+            <h1>用户登录</h1>
+            <p>UI自动化测试练习平台</p>
+        </div>
+        
+        {% if error %}
+        <div class="error-message" id="error-msg">{{ error }}</div>
+        {% endif %}
+        
+        <form action="/login/submit" method="POST">
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" 
+                       id="username" 
+                       name="username" 
+                       placeholder="请输入用户名"
+                       autocomplete="off">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" 
+                       id="password" 
+                       name="password" 
+                       placeholder="请输入密码">
+            </div>
+            
+            <button type="submit" class="login-btn" id="login-btn">登 录</button>
+        </form>
+        
+        <div class="test-account">
+            <h4>🔑 测试账号</h4>
+            <p><strong>账号1:</strong> admin / 123456</p>
+            <p><strong>账号2:</strong> test / test123</p>
+            <p><strong>账号3:</strong> student / student123</p>
+        </div>
+        
+        <div class="back-link">
+            <a href="/" id="back-home">← 返回首页</a>
+        </div>
+    </div>
+</body>
+</html>

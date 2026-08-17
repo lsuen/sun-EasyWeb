@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试搜索引擎 - UI自动化练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 60px 80px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .logo span {
+            color: #667eea;
+        }
+        
+        .search-box {
+            width: 600px;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .search-btn {
+            margin-top: 20px;
+            padding: 12px 40px;
+            font-size: 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .results {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+        }
+        
+        .result-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f5f5f5;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .nav-links {
+            margin-top: 30px;
+        }
+        
+        .nav-links a {
+            margin: 0 15px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            max-width: 300px;
+        }
+        
+        .test-info h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .test-info code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h3>📝 元素定位提示</h3>
+        <p>搜索框: <code>id="search-input"</code></p>
+        <p>搜索按钮: <code>id="search-btn"</code></p>
+        <p>导航链接: <code>class="nav-link"</code></p>
+    </div>
+    
+    <div class="container">
+        <div class="logo">测试<span>搜索</span></div>
+        
+        <form action="/" method="GET">
+            <input type="text" 
+                   class="search-box" 
+                   id="search-input" 
+                   name="q" 
+                   placeholder="请输入搜索关键词..."
+                   value="{{ query }}"
+                   autocomplete="off">
+            <br>
+            <button type="submit" class="search-btn" id="search-btn">搜索一下</button>
+        </form>
+        
+        {% if results %}
+        <div class="results" id="search-results">
+            <h3 style="margin-bottom: 15px; color: #333;">搜索结果 (共 {{ results|length }} 条)</h3>
+            {% for result in results %}
+            <div class="result-item">{{ result }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="nav-links">
+            <a href="/login" class="nav-link" id="login-link">登录</a>
+            <a href="/frames" class="nav-link" id="frames-link">iframe演示</a>
+            <a href="/alerts" class="nav-link" id="alerts-link">弹窗演示</a>
+            <a href="/dropdown" class="nav-link" id="dropdown-link">下拉框</a>
+            <a href="/mouse-keyboard" class="nav-link" id="mouse-link">鼠标键盘</a>
+            <a href="/windows" class="nav-link" id="windows-link">多窗口</a>
+            <a href="/elements" class="nav-link" id="elements-link">元素定位</a>
+        </div>
+    </div>
+</body>
+</html>

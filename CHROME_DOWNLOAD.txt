@@ -1,0 +1,77 @@
+# Chrome 浏览器和驱动下载说明
+
+## 下载地址
+
+### Chrome for Testing (版本 147.0.7727.24)
+
+**Chrome 浏览器:**
+```
+https://storage.googleapis.com/chrome-for-testing-public/147.0.7727.24/win64/chrome-win64.zip
+```
+
+**ChromeDriver:**
+```
+https://storage.googleapis.com/chrome-for-testing-public/147.0.7727.24/win64/chromedriver-win64.zip
+```
+
+## 安装步骤
+
+1. 下载上述两个压缩包
+2. 解压到项目根目录的 `pkg/` 文件夹下：
+   - `chrome-win64.zip` → 解压为 `pkg/chrome-win64/`
+   - `chromedriver-win64.zip` → 解压为 `pkg/chromedriver-win64/`
+
+3. 确保目录结构如下：
+   ```
+   pkg/
+   ├── chrome-win64/
+   │   └── chrome.exe
+   ├── chromedriver-win64/
+   │   └── chromedriver.exe
+   ├── UITestWebsite/    (已包含在 Git 中)
+   └── allurec/          (已包含在 Git 中)
+   ```
+
+## 如果链接失效
+
+如果上述 Google 存储链接无法访问，请自行从以下渠道下载：
+
+1. **Chrome for Testing 官方页面:**
+   https://google.github.io/chrome-for-testing-public/
+
+2. **ChromeDriver 官方下载:**
+   https://chromedriver.chromium.org/downloads
+
+3. **国内镜像（推荐）:**
+   - 淘宝镜像: https://npmmirror.com/mirrors/chrome-for-testing
+   - 腾讯云镜像: https://mirrors.cloud.tencent.com/npm/chrome-for-testing
+
+## 使用其他版本
+
+如果使用其他版本的 Chrome/ChromeDriver，需要修改配置文件：
+
+**编辑 `config/settings.yaml`:**
+
+```yaml
+# 修改浏览器路径（如果版本不同，路径可能变化）
+browser_path: pkg/chrome-win64/chrome.exe
+driver_path: pkg/chromedriver-win64/chromedriver.exe
+
+# 确保版本号匹配
+# Chrome 浏览器版本必须与 ChromeDriver 版本一致
+```
+
+**注意事项:**
+- Chrome 浏览器主版本号必须与 ChromeDriver 主版本号一致
+- 例如：Chrome 147.x.x.x 必须搭配 ChromeDriver 147.x.x.x
+- 版本不匹配会导致启动失败
+
+## 验证安装
+
+运行以下命令测试是否配置正确：
+
+```bash
+python main.py -t search
+```
+
+如果浏览器正常启动并执行测试，说明配置成功。

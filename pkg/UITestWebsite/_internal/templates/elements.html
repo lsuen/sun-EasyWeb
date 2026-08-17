@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八大元素定位综合练习 - UI自动化练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        
+        .section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .element-group {
+            margin-bottom: 20px;
+        }
+        
+        .element-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        button {
+            padding: 10px 25px;
+            margin: 5px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        a.link-item {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 15px;
+            background: #e3f2fd;
+            color: #1976d2;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        a.link-item:hover {
+            background: #bbdefb;
+        }
+        
+        .tag-demo {
+            padding: 15px;
+            background: white;
+            border: 2px dashed #667eea;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .result-box {
+            padding: 20px;
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .result-box p {
+            color: #2e7d32;
+            margin: 5px 0;
+        }
+        
+        .back-link {
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 12px;
+            max-width: 350px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .test-info h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .test-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .test-info td {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .test-info code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            color: #c33;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h3>📝 八大元素定位方法</h3>
+        <table>
+            <tr><td>1. ID</td><td><code>id="username"</code></td></tr>
+            <tr><td>2. Name</td><td><code>name="email"</code></td></tr>
+            <tr><td>3. Class</td><td><code>class="btn-submit"</code></td></tr>
+            <tr><td>4. Tag</td><td><code>tag_name="input"</code></td></tr>
+            <tr><td>5. Link Text</td><td><code>link_text="首页"</code></td></tr>
+            <tr><td>6. Partial Link</td><td><code>partial_link_text="首"</code></td></tr>
+            <tr><td>7. XPath</td><td><code>xpath="..."</code></td></tr>
+            <tr><td>8. CSS</td><td><code>css_selector="..."</code></td></tr>
+        </table>
+    </div>
+    
+    <div class="container">
+        <h1>🎯 八大元素定位综合练习</h1>
+        <p class="subtitle">此页面包含了所有常用的元素定位方法，供你全面练习</p>
+        
+        <!-- 1. ID 定位 -->
+        <div class="section">
+            <h3>1️⃣ ID 定位（最常用、最稳定）</h3>
+            <div class="element-group">
+                <label for="username">用户名：</label>
+                <input type="text" id="username" placeholder="使用 ID 定位此输入框">
+            </div>
+            <button id="submit-btn" onclick="showResult('ID')">提交（ID 定位）</button>
+        </div>
+        
+        <!-- 2. Name 定位 -->
+        <div class="section">
+            <h3>2️⃣ Name 定位</h3>
+            <div class="element-group">
+                <label for="email">邮箱地址：</label>
+                <input type="text" id="email-input" name="email" placeholder="使用 Name 定位此输入框">
+            </div>
+            <button name="send-btn" onclick="showResult('Name')">发送（Name 定位）</button>
+        </div>
+        
+        <!-- 3. Class 定位 -->
+        <div class="section">
+            <h3>3️⃣ Class 定位</h3>
+            <div class="element-group">
+                <label>密码输入：</label>
+                <input type="password" class="password-field" placeholder="使用 Class 定位此输入框">
+            </div>
+            <button class="btn-submit" onclick="showResult('Class')">确认（Class 定位）</button>
+        </div>
+        
+        <!-- 4. Tag 定位 -->
+        <div class="section">
+            <h3>4️⃣ Tag 标签名定位</h3>
+            <div class="tag-demo">
+                <p>这个区域只有一个 input 标签，可以使用 tag_name 定位</p>
+                <input type="text" placeholder="唯一的 input 标签">
+            </div>
+        </div>
+        
+        <!-- 5 & 6. Link 定位 -->
+        <div class="section">
+            <h3>5️⃣ & 6️⃣ 链接文本定位</h3>
+            <p style="margin-bottom: 15px; color: #666;">点击下方链接练习 link_text 和 partial_link_text：</p>
+            <a href="#" class="link-item" id="home-link" onclick="showResult('Link Text'); return false;">首页</a>
+            <a href="#" class="link-item" id="about-link" onclick="showResult('Partial Link'); return false;">关于我们</a>
+            <a href="#" class="link-item" id="contact-link" onclick="showResult('Link Text'); return false;">联系方式</a>
+        </div>
+        
+        <!-- 7 & 8. XPath 和 CSS 定位 -->
+        <div class="section">
+            <h3>7️⃣ & 8️⃣ XPath 和 CSS Selector 定位</h3>
+            <div class="element-group">
+                <label for="xpath-input">XPath 示例输入框：</label>
+                <input type="text" id="xpath-input" class="xpath-class" placeholder="可用 XPath 或 CSS 定位">
+            </div>
+            <button id="xpath-btn" class="xpath-class" onclick="showResult('XPath/CSS')">XPath/CSS 测试按钮</button>
+        </div>
+        
+        <div class="result-box" id="result-box">
+            <p>👆 点击上方任意按钮查看定位结果...</p>
+        </div>
+        
+        <div class="back-link">
+            <a href="/" id="back-home">← 返回首页</a>
+        </div>
+    </div>
+    
+    <script>
+        function showResult(method) {
+            const resultBox = document.getElementById('result-box');
+            const now = new Date().toLocaleTimeString();
+            resultBox.innerHTML = '<p>✅ [' + now + '] 成功使用 <strong>' + method + '</strong> 方法定位到元素！</p>';
+        }
+    </script>
+</body>
+</html>

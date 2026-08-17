@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe 内容页</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            padding: 30px;
+            background: #f9f9f9;
+        }
+        
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        button {
+            padding: 10px 25px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background: #764ba2;
+        }
+        
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            border-radius: 5px;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>📄 Iframe 内部内容</h2>
+        <p style="color: #666; margin-bottom: 20px;">这是 iframe 内部的页面内容</p>
+        
+        <div class="form-group">
+            <label for="frame-input">输入框（在iframe内）</label>
+            <input type="text" id="frame-input" placeholder="在iframe中输入内容...">
+        </div>
+        
+        <button id="frame-btn" onclick="showMessage()">点击我（在iframe内）</button>
+        
+        <div id="message-box"></div>
+    </div>
+    
+    <script>
+        function showMessage() {
+            const input = document.getElementById('frame-input').value;
+            const messageBox = document.getElementById('message-box');
+            if (input) {
+                messageBox.innerHTML = '<div class="message">✅ 你在iframe中输入了：' + input + '</div>';
+            } else {
+                messageBox.innerHTML = '<div class="message" style="background: #fff3e0; border-color: #ff9800; color: #e65100;">⚠️ 请先输入内容</div>';
+            }
+        }
+    </script>
+</body>
+</html>

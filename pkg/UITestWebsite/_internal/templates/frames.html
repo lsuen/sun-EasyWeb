@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe 演示 - UI自动化练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+        }
+        
+        .iframe-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .iframe-wrapper {
+            margin-top: 20px;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            max-width: 300px;
+        }
+        
+        .test-info h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .test-info code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+        
+        .back-link {
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h3>📝 元素定位提示</h3>
+        <p>Iframe: <code>id="test-frame"</code></p>
+        <p>Iframe内按钮: <code>id="frame-btn"</code></p>
+        <p>Iframe内输入框: <code>id="frame-input"</code></p>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🖼️ Iframe 嵌套演示</h1>
+            <p>此页面包含一个 iframe，用于练习切换表单操作</p>
+            <div class="back-link">
+                <a href="/" id="back-home">← 返回首页</a>
+            </div>
+        </div>
+        
+        <div class="iframe-container">
+            <h2 style="color: #333; margin-bottom: 15px;">下方是一个嵌入的 iframe：</h2>
+            <div class="iframe-wrapper">
+                <iframe id="test-frame" src="/frame-content" name="test-frame"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

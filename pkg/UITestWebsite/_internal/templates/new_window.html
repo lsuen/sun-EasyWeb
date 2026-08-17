@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            padding: 20px;
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .info-box h3 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+        
+        .back-link {
+            margin-top: 30px;
+        }
+        
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ page_title }}</h1>
+        <p>{{ page_content }}</p>
+        <p><strong>当前窗口标题：</strong><span id="page-title">{{ page_title }}</span></p>
+        <p><strong>页面标识：</strong><span id="page-id">{{ page_id }}</span></p>
+        
+        <div class="info-box">
+            <h3>💡 自动化测试提示</h3>
+            <p>这是一个独立的窗口，用于练习多窗口切换操作。</p>
+            <p>使用 <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px;">driver.window_handles</code> 获取所有窗口句柄。</p>
+        </div>
+        
+        <div class="back-link">
+            <a href="/" target="_blank" id="back-home">← 返回主页（新窗口）</a>
+        </div>
+    </div>
+</body>
+</html>

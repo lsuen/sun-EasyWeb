@@ -1,0 +1,66 @@
+[
+    {
+        "id": "TC001",
+        "name": "百度搜索-Selenium",
+        "type": "workflow",
+        "url": "https://www.baidu.com/",
+        "steps": [
+            {
+                "type": "input",
+                "selector": "id=kw",
+                "value": "selenium"
+            },
+            {
+                "type": "click",
+                "selector": "id=su"
+            }
+        ],
+        "expected_type": "title",
+        "expected_value": "selenium",
+        "priority": "P0",
+        "description": "【业务】验证百度搜索Selenium | 【技术】演示 workflow 类型执行多步骤操作"
+    },
+    {
+        "id": "TC002",
+        "name": "百度搜索-Python",
+        "type": "workflow",
+        "url": "https://www.baidu.com/",
+        "steps": [
+            {
+                "type": "input",
+                "selector": "id=kw",
+                "value": "Python"
+            },
+            {
+                "type": "click",
+                "selector": "id=su"
+            }
+        ],
+        "expected_type": "title",
+        "expected_value": "Python",
+        "priority": "P0",
+        "description": "【业务】验证百度搜索Python | 【技术】演示多用例执行"
+    },
+    {
+        "id": "TC003",
+        "name": "百度搜索-自动化测试",
+        "type": "workflow",
+        "url": "https://www.baidu.com/",
+        "steps": [
+            {
+                "type": "input",
+                "selector": "id=kw",
+                "value": "自动化测试"
+            },
+            {
+                "type": "click",
+                "selector": "id=su"
+            }
+        ],
+        "expected_type": "title",
+        "expected_value": "自动化测试",
+        "priority": "P1",
+        "description": "【业务】验证百度搜索自动化测试 | 【技术】演示中文搜索"
+    }
+]
+

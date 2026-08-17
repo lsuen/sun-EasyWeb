@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标键盘操作演示 - UI自动化练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        
+        .section h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .action-area {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .box {
+            width: 150px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        #hover-box {
+            background: #ff9800;
+            color: white;
+        }
+        
+        #hover-box:hover {
+            background: #f57c00;
+            transform: scale(1.05);
+        }
+        
+        #double-click-box {
+            background: #2196f3;
+            color: white;
+        }
+        
+        #right-click-box {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .input-area {
+            margin-top: 20px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .keyboard-hints {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+        
+        .keyboard-hints p {
+            margin: 5px 0;
+            color: #1565c0;
+        }
+        
+        .result-box {
+            padding: 20px;
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            border-radius: 8px;
+            margin-top: 20px;
+            min-height: 60px;
+        }
+        
+        .result-box p {
+            color: #2e7d32;
+            margin: 5px 0;
+        }
+        
+        .back-link {
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            max-width: 300px;
+        }
+        
+        .test-info h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .test-info code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h3>📝 元素定位提示</h3>
+        <p>悬停框: <code>id="hover-box"</code></p>
+        <p>双击框: <code>id="double-click-box"</code></p>
+        <p>右键框: <code>id="right-click-box"</code></p>
+        <p>输入框: <code>id="keyboard-input"</code></p>
+    </div>
+    
+    <div class="container">
+        <h1>🖱️⌨️ 鼠标和键盘操作演示</h1>
+        <p class="subtitle">练习鼠标悬停、双击、右键以及键盘操作</p>
+        
+        <div class="section">
+            <h3>🖱️ 鼠标操作区域</h3>
+            <div class="action-area">
+                <div class="box" id="hover-box" onmouseenter="showHover()" onmouseleave="hideHover()">
+                    鼠标悬停<br>在此区域
+                </div>
+                
+                <div class="box" id="double-click-box" ondblclick="showDoubleClick()">
+                    双击我
+                </div>
+                
+                <div class="box" id="right-click-box" oncontextmenu="showRightClick(event)">
+                    右键点击我
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>⌨️ 键盘操作区域</h3>
+            <div class="input-area">
+                <label for="keyboard-input" style="display: block; margin-bottom: 8px; color: #555; font-weight: bold;">
+                    在下方输入框中尝试键盘快捷键：
+                </label>
+                <input type="text" 
+                       id="keyboard-input" 
+                       placeholder="输入文本后尝试 Ctrl+A, Ctrl+C, Ctrl+V..."
+                       onkeydown="handleKeyboard(event)">
+                
+                <div class="keyboard-hints">
+                    <p><strong>可用快捷键：</strong></p>
+                    <p>• Ctrl + A : 全选</p>
+                    <p>• Ctrl + C : 复制</p>
+                    <p>• Ctrl + X : 剪切</p>
+                    <p>• Ctrl + V : 粘贴</p>
+                    <p>• Enter : 确认输入</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="result-box" id="result-box">
+            <p>执行鼠标或键盘操作后显示结果...</p>
+        </div>
+        
+        <div class="back-link">
+            <a href="/" id="back-home">← 返回首页</a>
+        </div>
+    </div>
+    
+    <script>
+        let hoverTimeout;
+        
+        function showHover() {
+            const resultBox = document.getElementById('result-box');
+            resultBox.innerHTML = '<p>✅ 鼠标悬停中...</p>';
+            clearTimeout(hoverTimeout);
+            hoverTimeout = setTimeout(() => {
+                resultBox.innerHTML = '<p>鼠标已移开</p>';
+            }, 2000);
+        }
+        
+        function hideHover() {
+            clearTimeout(hoverTimeout);
+            const resultBox = document.getElementById('result-box');
+            resultBox.innerHTML = '<p>鼠标已移开</p>';
+        }
+        
+        function showDoubleClick() {
+            const resultBox = document.getElementById('result-box');
+            resultBox.innerHTML = '<p>✅ 检测到双击操作！</p>';
+        }
+        
+        function showRightClick(event) {
+            event.preventDefault();
+            const resultBox = document.getElementById('result-box');
+            resultBox.innerHTML = '<p>✅ 检测到右键点击！</p>';
+        }
+        
+        function handleKeyboard(event) {
+            const resultBox = document.getElementById('result-box');
+            const key = event.key;
+            
+            if (event.ctrlKey) {
+                if (key === 'a') {
+                    setTimeout(() => {
+                        resultBox.innerHTML = '<p>✅ 执行了 Ctrl+A (全选)</p>';
+                    }, 100);
+                } else if (key === 'c') {
+                    setTimeout(() => {
+                        resultBox.innerHTML = '<p>✅ 执行了 Ctrl+C (复制)</p>';
+                    }, 100);
+                } else if (key === 'x') {
+                    setTimeout(() => {
+                        resultBox.innerHTML = '<p>✅ 执行了 Ctrl+X (剪切)</p>';
+                    }, 100);
+                } else if (key === 'v') {
+                    setTimeout(() => {
+                        resultBox.innerHTML = '<p>✅ 执行了 Ctrl+V (粘贴)</p>';
+                    }, 100);
+                }
+            } else if (key === 'Enter') {
+                const input = document.getElementById('keyboard-input');
+                resultBox.innerHTML = '<p>✅ 按下了 Enter 键，输入内容：<strong>' + input.value + '</strong></p>';
+            }
+        }
+    </script>
+</body>
+</html>
